@@ -6,16 +6,10 @@ class App extends Component {
 
   state = {
     cars: [
-      {
-        name: 'Ford',
-        year: 2018
-      },
-
-      {
-        name: 'Porshe',
-        year: 2015
-      }
-    ]
+      {name: 'Ford',year: 2018},
+      {name: 'Porshe',year: 2015}
+    ],
+    pageTitle: 'React components'
   }
 
   render() {
@@ -28,7 +22,7 @@ class App extends Component {
 
     return (
       <div style={divStyle}>
-        <h1>Hello world</h1>
+        <h1>{this.state.pageTitle}</h1>
         <Car name={cars[0].name} year={cars[0].year}/>
         <Car name={cars[1].name} year={cars[1].year}/>
         
