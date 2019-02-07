@@ -18,27 +18,41 @@ class App extends Component {
     })
   }
 
+  handleInput = (e) => {
+    this.setState({
+      pageTitle: e.target.value
+    })
+
+    if(e.target.value === "") {
+      this.setState({
+        pageTitle: 'React'
+      })
+    }
+  }
+
   render() {
     const divStyle = {
       textAlign: "center",
       fontFamily: "sans-serif"
     };
 
-    const cars = this.state.cars;
-
     return (
       <div style={divStyle}>
         <h1>{this.state.pageTitle}</h1>
+        <input type="text" onChange = {this.handleInput}/>
         <button onClick = {this.changeTitleHandler.bind(this, 'Changed')}>Change title</button>
-        <Car 
-          name={cars[0].name} 
-          year={cars[0].year}
-          onChangeTitle = {this.changeTitleHandler.bind(this, cars[0].name)}/>
-        <Car 
-          name={cars[1].name} 
-          year={cars[1].year}
-          onChangeTitle = {this.changeTitleHandler.bind(this, cars[1].name)}/>
         
+        {this.state.cars.map((car, i)=>{
+          return (
+            <Car 
+            key = {i}
+            name={car.name} 
+            year={car.year} 
+            onChangeTitle={this.changeTitleHandler.bind(this, car.name)}
+            />
+          )})
+        }
+  
       </div>
     );
   }
