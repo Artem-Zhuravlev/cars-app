@@ -12,7 +12,9 @@ class App extends Component {
     return (
       <div style={divStyle}>
         <h1>Hello world</h1>
-        <Car name={'Ford'} year={2018}/>
+        <Car name={'Ford'} year={2018}>
+          best car
+        </Car>
         <Car name={'Porshe'} year={2015}/>
         
       </div>
