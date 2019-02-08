@@ -3,6 +3,7 @@
   padding: 10px 0;
   width: 48%;
   margin-bottom: 10px;
+  transition: 0.5s;
 }
 
 .input {
