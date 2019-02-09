@@ -7,7 +7,7 @@ class App extends Component {
   state = {
     cars: [
       {name: 'Ford',year: 2018},
-      {name: 'Porshe',year: 2015}
+      // {name: 'Porshe',year: 2015}
     ],
     pageTitle: 'React components',
     showCars: true
@@ -55,7 +55,27 @@ class App extends Component {
 
   }
 
+  componentWillMount() {
+    console.log('App componentWillMount');
+  }
+
+  static getDerivedStateFromProps(nextProps, prevState) {
+    console.log('getDerivedStateFromProps', nextProps, prevState);
+
+    return prevState;
+  }
+
+  componentDidMount() {
+    console.log('App componentDidMount')
+  }
+
+  getSnapshotBeforeUpdate() {
+    console.log('App getSnapshotBeforeUpdate')
+  }
+
   render() {
+    console.log('App render');
+
     const divStyle = {
       textAlign: "center",
       fontFamily: "sans-serif"
@@ -63,7 +83,8 @@ class App extends Component {
 
     return (
       <div style={divStyle}>
-        <h1>{this.state.pageTitle}</h1>
+        {/* <h1>{this.state.pageTitle}</h1> */}
+        <h1>{this.props.title}</h1>
         <input type="text" onChange = {this.handleInput}/>
         <button onClick = {this.changeTitleHandler.bind(this, 'Changed')}>Change title</button>
         <button onClick={this.toggleCarsHandler}>Toggle cars</button>
