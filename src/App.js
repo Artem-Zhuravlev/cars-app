@@ -5,7 +5,7 @@ import Counter from './Counter/Counter';
 
 class App extends Component {
 	state = {
-		cars: [{ name: 'Ford', year: 2018 }, { name: 'Porshe', year: 2015 }],
+		cars: [{ name: 'Ford', year: 2018 }, { name: 'Porshe', year: '2015' }],
 		pageTitle: 'React components',
 		showCars: true,
 	};
@@ -94,15 +94,17 @@ class App extends Component {
 				<div
 					style={{
 						display: 'flex',
-						justifyContent: 'space-between',
+						flexDirection: 'column',
+						alignItems: 'center',
 						padding: '10px 0',
 					}}
 				>
 					{this.state.showCars
 						? this.state.cars.map((car, index) => {
 								return (
-									<ErrorBoundary>
+									<ErrorBoundary key={index}>
 										<Car
+											index={index}
 											key={index}
 											name={car.name}
 											year={car.year}

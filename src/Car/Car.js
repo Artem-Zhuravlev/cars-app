@@ -1,30 +1,38 @@
-import React from 'react';
-//import Radium from 'radium';
+import React, { Component } from 'react';
+import propTypes from 'prop-types';
 import './Car.css';
 import widthClass from '../hoc/withClass';
 
-class Car extends React.Component {
+class Car extends Component {
+	constructor(props) {
+		super(props);
+		this.inputRef = React.createRef();
+	}
+
+	componentDidMount() {
+		if (this.props.index === 0) {
+			this.inputRef.current.focus();
+		}
+	}
+
 	render() {
 		const inputClasses = ['input'];
 
 		if (this.props.name !== '') {
 			inputClasses.push('green');
 		} else {
-			// inputClasses.push('red');
+			inputClasses.push('red');
 		}
 
 		if (this.props.name.length > 4) {
 			inputClasses.push('bold');
 		}
 
-		const style = {
-			':hover': {},
-		};
-
 		return (
 			<React.Fragment>
 				<h3> Car name {this.props.name}</h3>
 				<input
+					ref={this.inputRef}
 					type="text"
 					onChange={this.props.onChangeName}
 					value={this.props.name}
@@ -36,5 +44,12 @@ class Car extends React.Component {
 		);
 	}
 }
+
+Car.propTypes = {
+	name: propTypes.string,
+	year: propTypes.number,
+	onChangeName: propTypes.func,
+	onDelete: propTypes.func,
+};
 
 export default widthClass(Car, 'Car');
