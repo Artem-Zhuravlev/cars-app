@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Auxiliary from '../hoc/Auxiliary';
 
 class Counter extends Component {
 	state = {
@@ -6,24 +7,28 @@ class Counter extends Component {
 	};
 
 	addCounter = () => {
-		this.setState({
-			counter: this.state.counter + 1,
+		this.setState(prevState => {
+			return {
+				counter: prevState.counter + 1,
+			};
 		});
 	};
 
 	minusCounter = () => {
-		this.setState({
-			counter: this.state.counter - 1,
+		this.setState(prevState => {
+			return {
+				counter: prevState.counter - 1,
+			};
 		});
 	};
 
 	render() {
 		return (
-			<>
+			<Auxiliary>
 				<h2>Counter {this.state.counter}</h2>
 				<button onClick={this.addCounter}>+</button>
 				<button onClick={this.minusCounter}>-</button>
-			</>
+			</Auxiliary>
 		);
 	}
 }
